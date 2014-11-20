@@ -51,8 +51,8 @@ class AbstractCell
 		int neighbors;
 	public:
 		AbstractCell();
-		virtual void Evolve();
-		virtual void NotifyNeighbors();
+		virtual void Evolve() = 0;
+		virtual void NotifyNeighbors() = 0;
 		void BecomeAlive();
 		bool IsAlive();
 };

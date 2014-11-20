@@ -10,25 +10,16 @@
 // AbstractCell Functions
 // ---------
 
-AbstractCell::AbstractCell() : type(CONWAY), alive(false)
-{
-}
-
-void AbstractCell::Evolve()
-{
-}
-
-void AbstractCell::NotifyNeighbors()
-{
-}
+AbstractCell::AbstractCell() : type(CONWAY), alive(false) {}
 
 void AbstractCell::BecomeAlive()
 {
+	alive = true;
 }
 
 bool AbstractCell::IsAlive()
 {
-	return false;
+	return alive;
 }
 
 // ---------
