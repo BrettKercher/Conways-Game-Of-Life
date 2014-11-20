@@ -11,14 +11,13 @@ class Life
 		int n;
 		int m;
 	public:
-		Life(int _n, int _m): n(_n), m(_m), grid( _n, std::vector<T>(_m)) 
-		{
-			
-		}
+		Life(int _n, int _m): n(_n), m(_m), grid( _n, std::vector<T>(_m)) {}
+		
 		void InitializeGrid(int n, int m) 
 		{
 			grid[n][m].BecomeAlive();
 		}
+		
 		void NextGeneration() 
 		{
 			//first pass - skip dead guys, increment count of neighbors
@@ -53,7 +52,7 @@ class AbstractCell
 	public:
 		AbstractCell();
 		virtual void Evolve();
-		virtual int NotifyNeighbors();
+		virtual void NotifyNeighbors();
 		void BecomeAlive();
 		bool IsAlive();
 };
@@ -65,7 +64,7 @@ class ConwayCell : AbstractCell
 	public:
 		ConwayCell();
 		void Evolve();
-		int NotifyNeighbors();
+		void NotifyNeighbors();
 };
 
 class FredkinCell : AbstractCell
@@ -75,5 +74,5 @@ class FredkinCell : AbstractCell
 	public:
 		FredkinCell();
 		void Evolve();
-		int NotifyNeighbors();
+		void NotifyNeighbors();
 };
