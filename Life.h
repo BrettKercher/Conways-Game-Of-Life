@@ -7,13 +7,41 @@ template <typename T>
 class Life
 {
 	private:
-		std::vector< std::vector<T> > grid;
+		std::vector< std::vector<T> > grid; //n = y, m = x
 		int n;
 		int m;
 	public:
-		Life() {}
-		void InitializeGrid() {}
-		void NextGeneration() {}
+		Life(int _n, int _m): n(_n), m(_m), grid( _n, std::vector<T>(_m)) 
+		{
+			
+		}
+		void InitializeGrid(int n, int m) 
+		{
+			grid[n][m].BecomeAlive();
+		}
+		void NextGeneration() 
+		{
+			//first pass - skip dead guys, increment count of neighbors
+			for(int i = 0; i < n; i++)
+			{
+				for(int j = 0; j < n; j++)
+				{
+					if(grid[n][m].IsAlive())
+					{
+						grid[n][m].NotifyNeighbors();
+					}
+				}
+			}
+			
+			//second pass - check neighbor count, perform rules
+			for(int i = 0; i < n; i++)
+			{
+				for(int j = 0; j < n; j++)
+				{
+					grid[n][m].Evolve();
+				}
+			}
+		}
 };
 
 class AbstractCell
@@ -21,9 +49,13 @@ class AbstractCell
 	private:
 		CELLTYPE type;
 		bool alive;
+		int neighbors;
 	public:
+		AbstractCell();
 		virtual void Evolve();
-		virtual int CountNeighbors();
+		virtual int NotifyNeighbors();
+		void BecomeAlive();
+		bool IsAlive();
 };
 
 class ConwayCell : AbstractCell
@@ -31,9 +63,9 @@ class ConwayCell : AbstractCell
 	private:
 		
 	public:
-		ConwayCell() {}
+		ConwayCell();
 		void Evolve();
-		int CountNeighbors();
+		int NotifyNeighbors();
 };
 
 class FredkinCell : AbstractCell
@@ -41,7 +73,7 @@ class FredkinCell : AbstractCell
 	private:
 		int age;
 	public:
-		FredkinCell() {}
+		FredkinCell();
 		void Evolve();
-		int CountNeighbors();
+		int NotifyNeighbors();
 };
