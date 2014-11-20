@@ -38,5 +38,10 @@ class ConwayCell : AbstractCell
 
 class FredkinCell : AbstractCell
 {
-	
+	private:
+		int age;
+	public:
+		FredkinCell() {}
+		void Evolve();
+		int CountNeighbors();
 };
