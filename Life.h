@@ -1,20 +1,32 @@
 #include <vector>
 #include <utility>
 
+enum CELLTYPE { CONWAY, FREDKIN } ;
+
 template <typename T> 
 class Life
 {
 	private:
-		std::vector<T> grid;
+		std::vector< std::vector<T> > grid;
+		int n;
+		int m;
 	public:
-		void InitializeGrid();
-		void Evolve();
-		int CountNeighbors();
+		Life() {}
+		void InitializeGrid() {}
+		void NextGeneration() {}
+		int CountNeighbors(int x, int y) 
+		{
+			return 0;
+		}
 };
 
 class AbstractCell
 {
-	
+	private:
+		CELLTYPE type;
+		bool alive;
+	public:
+		virtual void Evolve();
 };
 
 class ConwayCell
