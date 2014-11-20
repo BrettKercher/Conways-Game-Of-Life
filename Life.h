@@ -14,10 +14,6 @@ class Life
 		Life() {}
 		void InitializeGrid() {}
 		void NextGeneration() {}
-		int CountNeighbors(int x, int y) 
-		{
-			return 0;
-		}
 };
 
 class AbstractCell
@@ -27,14 +23,20 @@ class AbstractCell
 		bool alive;
 	public:
 		virtual void Evolve();
+		virtual int CountNeighbors();
 };
 
-class ConwayCell
+class ConwayCell : AbstractCell
 {
-	
+	private:
+		
+	public:
+		ConwayCell() {}
+		void Evolve();
+		int CountNeighbors();
 };
 
-class FredkinCell
+class FredkinCell : AbstractCell
 {
 	
 };
