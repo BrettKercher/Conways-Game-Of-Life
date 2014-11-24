@@ -126,6 +126,7 @@ class AbstractCell
 		FRIEND_TEST(Life, life_notify_5);
 		FRIEND_TEST(Life, life_notify_6);
 		FRIEND_TEST(Life, life_notify_7);
+		
 };
 
 class ConwayCell : public AbstractCell
@@ -135,6 +136,13 @@ class ConwayCell : public AbstractCell
 	public:
 		ConwayCell();
 		void Evolve();
+	private:
+		FRIEND_TEST(Life, conway_constructor_1);
+		FRIEND_TEST(Life, conway_evolve_1);
+		FRIEND_TEST(Life, conway_evolve_2);
+		FRIEND_TEST(Life, conway_evolve_3);
+		FRIEND_TEST(Life, conway_evolve_4);
+		FRIEND_TEST(Life, conway_evolve_5);
 };
 
 class FredkinCell : public AbstractCell
@@ -144,4 +152,13 @@ class FredkinCell : public AbstractCell
 	public:
 		FredkinCell();
 		void Evolve();
+		
+	private:
+		FRIEND_TEST(Life, fredkin_constructor_1);
+		FRIEND_TEST(Life, fredkin_evolve_1);
+		FRIEND_TEST(Life, fredkin_evolve_2);
+		FRIEND_TEST(Life, fredkin_evolve_3);
+		FRIEND_TEST(Life, fredkin_evolve_4);
+		FRIEND_TEST(Life, fredkin_evolve_5);
+		FRIEND_TEST(Life, fredkin_evolve_6);
 };

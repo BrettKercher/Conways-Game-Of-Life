@@ -300,8 +300,189 @@ TEST(Life, life_next_gen_3)
 	}
 }
 
+// -----------
+// Test Conway
+// -----------
 
+// ----
+//  Test Constructor
+// ----
 
+TEST(Life, conway_constructor_1) 
+{
+	ConwayCell cc;
+	
+	ASSERT_EQ(cc.alive, false);
+	ASSERT_EQ(cc.type, CONWAY);
+	ASSERT_EQ(cc.neighbors, 0);
+}
 
+// ----
+//  Test Evolve
+// ----
 
+TEST(Life, conway_evolve_1) 
+{
+	ConwayCell cc;
+	
+	cc.alive = true;
+	cc.neighbors = 1;
+	cc.type = CONWAY;
+	
+	cc.Evolve();
+	
+	ASSERT_EQ(cc.alive, false);
+}
+
+TEST(Life, conway_evolve_2) 
+{
+	ConwayCell cc;
+	
+	cc.alive = true;
+	cc.neighbors = 2;
+	cc.type = CONWAY;
+	
+	cc.Evolve();
+	
+	ASSERT_EQ(cc.alive, true);
+}
+
+TEST(Life, conway_evolve_3) 
+{
+	ConwayCell cc;
+	
+	cc.alive = false;
+	cc.neighbors = 3;
+	cc.type = CONWAY;
+	
+	cc.Evolve();
+	
+	ASSERT_EQ(cc.alive, true);
+}
+
+TEST(Life, conway_evolve_4) 
+{
+	ConwayCell cc;
+	
+	cc.alive = false;
+	cc.neighbors = 1;
+	cc.type = CONWAY;
+	
+	cc.Evolve();
+	
+	ASSERT_EQ(cc.alive, false);
+}
+
+TEST(Life, conway_evolve_5) 
+{
+	ConwayCell cc;
+	
+	cc.alive = true;
+	cc.neighbors = 4;
+	cc.type = CONWAY;
+	
+	cc.Evolve();
+	
+	ASSERT_EQ(cc.alive, false);
+}
+
+// -----------
+// Test Fredkin
+// -----------
+
+// ----
+//  Test Constructor
+// ----
+
+TEST(Life, fredkin_constructor_1) 
+{
+	FredkinCell fc;
+	
+	ASSERT_EQ(fc.alive, false);
+	ASSERT_EQ(fc.type, FREDKIN);
+	ASSERT_EQ(fc.neighbors, 0);
+	ASSERT_EQ(fc.age, 0);
+}
+
+// ----
+//  Test Evolve
+// ----
+
+TEST(Life, fredkin_evolve_1) 
+{
+	FredkinCell fc;
+	
+	fc.alive = true;
+	fc.neighbors = 0;
+	fc.type = FREDKIN;
+	
+	fc.Evolve();
+	
+	ASSERT_EQ(fc.alive, false);
+}
+
+TEST(Life, fredkin_evolve_2) 
+{
+	FredkinCell fc;
+	
+	fc.alive = true;
+	fc.neighbors = 2;
+	fc.type = FREDKIN;
+	
+	fc.Evolve();
+	
+	ASSERT_EQ(fc.alive, false);
+}
+
+TEST(Life, fredkin_evolve_3) 
+{
+	FredkinCell fc;
+	
+	fc.alive = true;
+	fc.neighbors = 4;
+	fc.type = FREDKIN;
+	
+	fc.Evolve();
+	
+	ASSERT_EQ(fc.alive, false);
+}
+
+TEST(Life, fredkin_evolve_4) 
+{
+	FredkinCell fc;
+	
+	fc.alive = true;
+	fc.neighbors = 1;
+	fc.type = FREDKIN;
+	
+	fc.Evolve();
+	
+	ASSERT_EQ(fc.alive, true);
+}
+
+TEST(Life, fredkin_evolve_5) 
+{
+	FredkinCell fc;
+	
+	fc.alive = false;
+	fc.neighbors = 1;
+	fc.type = FREDKIN;
+	
+	fc.Evolve();
+	
+	ASSERT_EQ(fc.alive, true);
+}
+
+TEST(Life, fredkin_evolve_6) 
+{
+	FredkinCell fc;
+	
+	fc.alive = false;
+	fc.neighbors = 2;
+	fc.type = FREDKIN;
+	
+	fc.Evolve();
+	
+	ASSERT_EQ(fc.alive, false);
+}
 
