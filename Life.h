@@ -7,7 +7,7 @@ enum CELLTYPE { CONWAY, FREDKIN } ;
 template <typename T> 
 class Life
 {
-	private:
+	public:
 		std::vector< std::vector<T> > grid; //n = y, m = x
 		int n;
 		int m;
