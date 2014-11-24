@@ -126,6 +126,15 @@ class AbstractCell
 		FRIEND_TEST(Life, life_notify_5);
 		FRIEND_TEST(Life, life_notify_6);
 		FRIEND_TEST(Life, life_notify_7);
+		FRIEND_TEST(Life, abstract_alive_1);
+		FRIEND_TEST(Life, abstract_alive_2);
+		FRIEND_TEST(Life, abstract_alive_3);
+		FRIEND_TEST(Life, abstract_inc_neighbors_1);
+		FRIEND_TEST(Life, abstract_inc_neighbors_2);
+		FRIEND_TEST(Life, abstract_inc_neighbors_3);
+		FRIEND_TEST(Life, abstract_res_neighbors_1);
+		FRIEND_TEST(Life, abstract_res_neighbors_2);
+		FRIEND_TEST(Life, abstract_res_neighbors_3);
 		
 };
 

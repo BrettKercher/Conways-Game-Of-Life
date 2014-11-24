@@ -486,3 +486,135 @@ TEST(Life, fredkin_evolve_6)
 	ASSERT_EQ(fc.alive, false);
 }
 
+// -----------
+// Test Abstract Cell
+// -----------
+
+// ----
+//  Test BecomeAlive
+// ----
+
+TEST(Life, abstract_alive_1) 
+{
+	FredkinCell fc;
+
+	ASSERT_EQ(fc.alive, false);
+	
+	fc.BecomeAlive();
+	
+	ASSERT_EQ(fc.alive, true);
+}
+
+TEST(Life, abstract_alive_2) 
+{
+	ConwayCell cc;
+
+	ASSERT_EQ(cc.alive, false);
+	
+	cc.BecomeAlive();
+	
+	ASSERT_EQ(cc.alive, true);
+}
+
+TEST(Life, abstract_alive_3) 
+{
+	//Test Cell
+}
+
+// ----
+//  Test IsAlive
+// ----
+
+TEST(Life, abstract_is_alive_1) 
+{
+	FredkinCell fc;
+	ASSERT_EQ(fc.IsAlive(), false);
+}
+
+TEST(Life, abstract_is_alive_2) 
+{
+	ConwayCell cc;
+	cc.BecomeAlive();
+	ASSERT_EQ(cc.IsAlive(), true);
+}
+
+TEST(Life, abstract_is_alive_3) 
+{
+	//Test Cell
+}
+
+// ----
+//  Test BecomeAlive
+// ----
+
+TEST(Life, abstract_inc_neighbors_1) 
+{
+	FredkinCell fc;
+	fc.IncrementNeighbors();
+	ASSERT_EQ(fc.neighbors, 1);
+}
+
+TEST(Life, abstract_inc_neighbors_2) 
+{
+	ConwayCell cc;
+	cc.IncrementNeighbors();
+	cc.IncrementNeighbors();
+	ASSERT_EQ(cc.neighbors, 2);
+}
+
+TEST(Life, abstract_inc_neighbors_3) 
+{
+	//Test Cell
+}
+
+// ----
+//  Test ResetNeighbors
+// ----
+
+TEST(Life, abstract_res_neighbors_1) 
+{
+	FredkinCell fc;
+	fc.neighbors = 32;
+	fc.ResetNeighbors();
+	ASSERT_EQ(fc.neighbors, 0);
+}
+
+TEST(Life, abstract_res_neighbors_2) 
+{
+	ConwayCell cc;
+	cc.neighbors = 8;
+	cc.ResetNeighbors();
+	ASSERT_EQ(cc.neighbors, 0);
+}
+
+TEST(Life, abstract_res_neighbors_3) 
+{
+	//Test Cell
+}
+
+// ----
+//  Test GetType
+// ----
+
+TEST(Life, abstract_type_1) 
+{
+	FredkinCell fc;
+	ASSERT_EQ(fc.GetCellType(), FREDKIN);
+}
+
+TEST(Life, abstract_type_2) 
+{
+	ConwayCell cc;
+	ASSERT_EQ(cc.GetCellType(), CONWAY);
+}
+
+TEST(Life, abstract_type_3) 
+{
+	//Test Cell
+}
+
+
+
+
+
+
