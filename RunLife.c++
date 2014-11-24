@@ -36,6 +36,7 @@ int main () {
 	
 	Life<ConwayCell> l1 (n, m);
 	
+	//Initialize Grid
 	for(int i = 0; i < n; i++)
 	{
 		cin >> row;
@@ -46,6 +47,16 @@ int main () {
 				l1.InitializeGrid(i, j);
 			}
 		}
+	}
+	
+	//Print Initial Grid
+	cout << l1;
+	
+	//Simulate 12 Generations
+	for(int i = 1; i <= 12; i++)
+	{
+		l1.NextGeneration();
+		cout << l1;
 	}
 	
 
@@ -74,6 +85,19 @@ int main () {
 			}
 		}
 	}
+	
+	//Print Initial Grid
+	cout << l2;
+	
+	//Simulate 28 Generations
+	for(int i = 1; i <= 28; i++)
+	{
+		l2.NextGeneration();
+		if(i%4 == 0)
+			cout << l2;
+	}
+	
+	cout << endl;
 	
     // ------------------
     // Conway Cell 109x69
@@ -105,6 +129,41 @@ int main () {
 			}
 		}
 	}
+	
+	//Print Initial Grid
+	cout << l3;
+	
+	//Simulate 283 Generations
+	for(int i = 1; i <= 283; i++)
+	{
+		l3.NextGeneration();
+		if(i < 10)
+			cout << l3;
+	}
+	
+	//Print the 283rd generation
+	cout << l3;
+	
+	//Simulate 40 Generations
+	for(int i = 0; i < 40; i++)
+	{
+		l3.NextGeneration();
+	}
+	
+	//Print the 323rd generation
+	cout << l3;
+	
+	
+	//Simulate 2177 Generations
+	for(int i = 0; i < 2177; i++)
+	{
+		l3.NextGeneration();
+	}
+	
+	//Print the 2500th generation
+	cout << l3;
+	
+	cout << endl;
 
     // ------------------
     // Fredkin Cell 20x20
@@ -130,6 +189,16 @@ int main () {
 				l4.InitializeGrid(i, j);
 			}
 		}
+	}
+	
+	//Print Initial Grid
+	cout << l4;
+	
+	//Simulate 5 Generations
+	for(int i = 1; i <= 5; i++)
+	{
+		l4.NextGeneration();
+		cout << l4;
 	}
 
     // ----------

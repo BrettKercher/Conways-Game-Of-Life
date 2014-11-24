@@ -7,10 +7,11 @@ enum CELLTYPE { CONWAY, FREDKIN } ;
 template <typename T> 
 class Life
 {
-	public:
+	private:
 		std::vector< std::vector<T> > grid; //n = y, m = x
 		int n;
 		int m;
+		int generation;
 		
 		void NotifyNeighbors(int y, int x, bool Conway)
 		{
@@ -44,8 +45,40 @@ class Life
 			}
 		}
 		
+		int GetPopulation() const
+		{
+			int pop = 0;
+			
+			for(int i = 0; i < n; i++)
+			{
+				for(int j = 0; j < m; j++)
+				{
+					if(grid[i][j].IsAlive())
+						pop++;
+				}
+			}
+			
+			return pop;
+		}
+		
 	public:
-		Life(int _n, int _m): grid( _n, std::vector<T>(_m)), n(_n), m(_m)  {}
+		Life(int _n, int _m): grid( _n, std::vector<T>(_m)), n(_n), m(_m), generation(0)  {}
+		
+		friend std::ostream& operator<<( std::ostream& o, const Life& l) 
+		{
+			o << std::endl << "Generation: " << l.generation << ", Population: " << l.GetPopulation() << "." << std::endl;
+			
+			for(int i = 0; i < l.n; i++)
+			{
+				for(int j = 0; j < l.m; j++)
+				{
+					o << l.grid[i][j];
+				}
+				o << std::endl;
+			}
+			
+			return o;
+		}
 		
 		void InitializeGrid(int n, int m) 
 		{
@@ -83,6 +116,8 @@ class Life
 					grid[i][j].ResetNeighbors();
 				}
 			}
+			
+			generation++;
 		}
 		
 	private:
@@ -113,7 +148,7 @@ class AbstractCell
 		AbstractCell(CELLTYPE t);
 		virtual void Evolve() = 0;
 		void BecomeAlive();
-		bool IsAlive();
+		bool IsAlive() const;
 		void IncrementNeighbors();
 		void ResetNeighbors();
 		CELLTYPE GetCellType();
@@ -145,6 +180,7 @@ class ConwayCell : public AbstractCell
 	public:
 		ConwayCell();
 		void Evolve();
+		friend std::ostream& operator<<( std::ostream& o, const ConwayCell& cc);
 	private:
 		FRIEND_TEST(Life, conway_constructor_1);
 		FRIEND_TEST(Life, conway_evolve_1);
@@ -161,6 +197,7 @@ class FredkinCell : public AbstractCell
 	public:
 		FredkinCell();
 		void Evolve();
+		friend std::ostream& operator<<( std::ostream& o, const FredkinCell& fc);
 		
 	private:
 		FRIEND_TEST(Life, fredkin_constructor_1);

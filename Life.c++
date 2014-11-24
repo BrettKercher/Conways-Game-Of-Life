@@ -19,7 +19,7 @@ void AbstractCell::BecomeAlive()
 	alive = true;
 }
 
-bool AbstractCell::IsAlive()
+bool AbstractCell::IsAlive() const
 {
 	return alive;
 }
@@ -45,6 +45,15 @@ void AbstractCell::ResetNeighbors()
 
 ConwayCell::ConwayCell() : AbstractCell(CONWAY) {}
 
+std::ostream& operator<<( std::ostream& o, const ConwayCell& cc)
+{
+	if(cc.IsAlive())
+		o << '*';
+	else
+		o << '.';
+	return o;
+}
+
 void ConwayCell::Evolve() 
 {
 	if(alive)
@@ -69,9 +78,19 @@ void ConwayCell::Evolve()
 // FredkinCell Functions
 // ---------
 
-FredkinCell::FredkinCell()  : AbstractCell(FREDKIN), age(0)
+FredkinCell::FredkinCell()  : AbstractCell(FREDKIN), age(0) {}
+
+std::ostream& operator<<( std::ostream& o, const FredkinCell& fc)
 {
+	if(fc.IsAlive())
+		if(fc.age > 9)
+			o << '+';
+		else
+			o << fc.age;
+	else
+		o << '-';
 	
+	return o;
 }
 
 void FredkinCell::Evolve() 
@@ -92,7 +111,6 @@ void FredkinCell::Evolve()
 		if(neighbors == 1 || neighbors == 3)
 		{
 			alive = true;
-			age++;
 		}
 	}
 }
