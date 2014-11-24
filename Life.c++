@@ -10,7 +10,9 @@
 // AbstractCell Functions
 // ---------
 
-AbstractCell::AbstractCell() : type(CONWAY), alive(false) {}
+AbstractCell::AbstractCell() : type(CONWAY), alive(false), neighbors(0) {}
+
+AbstractCell::AbstractCell(CELLTYPE t) : type(t), alive(false), neighbors(0) {}
 
 void AbstractCell::BecomeAlive()
 {
@@ -22,40 +24,75 @@ bool AbstractCell::IsAlive()
 	return alive;
 }
 
+CELLTYPE AbstractCell::GetCellType()
+{
+	return type;
+}
+
+void AbstractCell::IncrementNeighbors()
+{
+	this->neighbors++;
+}
+
+void AbstractCell::ResetNeighbors()
+{
+	neighbors = 0;
+}
+
 // ---------
 // ConwayCell Functions
 // ---------
 
-ConwayCell::ConwayCell() 
-{
-	
-}
+ConwayCell::ConwayCell() : AbstractCell(CONWAY) {}
 
 void ConwayCell::Evolve() 
 {
+	if(alive)
+	{
+		if(neighbors < 2 || neighbors > 3)
+		{
+			alive = false;
+		}
+	}
+	else
+	{
+		if(neighbors == 3)
+		{
+			alive = true;
+		}
+	}
 	
-}
-
-void ConwayCell::NotifyNeighbors() 
-{
-	
+	//If neither of the above conditions pass, the cell remains in its same state
 }
 
 // ---------
 // FredkinCell Functions
 // ---------
 
-FredkinCell::FredkinCell() 
+FredkinCell::FredkinCell()  : AbstractCell(FREDKIN), age(0)
 {
 	
 }
 
 void FredkinCell::Evolve() 
 {
-	
-}
-
-void FredkinCell::NotifyNeighbors() 
-{
-	
+	if(alive)
+	{
+		if(neighbors == 0 || neighbors == 2 || neighbors == 4)
+		{
+			alive = false;
+		}
+		else
+		{
+			age++;
+		}
+	}
+	else
+	{
+		if(neighbors == 1 || neighbors == 3)
+		{
+			alive = true;
+			age++;
+		}
+	}
 }
