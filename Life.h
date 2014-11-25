@@ -58,7 +58,7 @@ class Life
 	public:
 		Life(int _n, int _m): grid( _n, std::vector<T>(_m)), n(_n), m(_m), generation(0)  {}
 		
-		friend std::ostream& operator<<( std::ostream& o, const Life& l) 
+		friend std::ostream& operator<<( std::ostream& o, const Life& l)
 		{
 			o << std::endl << "Generation = " << l.generation << ", Population = " << l.GetPopulation() << "." << std::endl;
 			
@@ -129,8 +129,13 @@ class Life
 		FRIEND_TEST(Life, life_notify_7);
 		FRIEND_TEST(Life, life_constructor_1);
 		FRIEND_TEST(Life, life_constructor_2);
+		FRIEND_TEST(Life, life_constructor_3);
+		FRIEND_TEST(Life, life_pop_1);
+		FRIEND_TEST(Life, life_pop_2);
+		FRIEND_TEST(Life, life_pop_3);
 		FRIEND_TEST(Life, life_init_1);
 		FRIEND_TEST(Life, life_init_2);
+		FRIEND_TEST(Life, life_init_3); 
 		FRIEND_TEST(Life, life_next_gen_1);
 		FRIEND_TEST(Life, life_next_gen_2);
 		FRIEND_TEST(Life, life_next_gen_3);
@@ -171,6 +176,18 @@ class AbstractCell
 		FRIEND_TEST(Life, abstract_res_neighbors_1);
 		FRIEND_TEST(Life, abstract_res_neighbors_2);
 		FRIEND_TEST(Life, abstract_res_neighbors_3);
+		FRIEND_TEST(Life, cell_inc_neighbors_1);
+		FRIEND_TEST(Life, cell_inc_neighbors_2);
+		FRIEND_TEST(Life, cell_inc_neighbors_3);
+		FRIEND_TEST(Life, cell_res_neighbors_1);
+		FRIEND_TEST(Life, cell_res_neighbors_2);
+		FRIEND_TEST(Life, cell_res_neighbors_3);
+		FRIEND_TEST(Life, cell_evolve_1);
+		FRIEND_TEST(Life, cell_evolve_2);
+		FRIEND_TEST(Life, cell_evolve_3);
+		FRIEND_TEST(Life, cell_evolve_4);
+		FRIEND_TEST(Life, cell_evolve_5);
+		FRIEND_TEST(Life, cell_evolve_6);
 		
 };
 
@@ -182,10 +199,7 @@ class ConwayCell : public AbstractCell
 		ConwayCell();
 		void Evolve();
 		friend std::ostream& operator<<( std::ostream& o, const ConwayCell& cc);
-		virtual ConwayCell* clone () const 
-		{
-            return new ConwayCell(*this);
-		}
+		virtual ConwayCell* clone () const { return new ConwayCell(*this); }
 	private:
 		FRIEND_TEST(Life, conway_constructor_1);
 		FRIEND_TEST(Life, conway_evolve_1);
@@ -193,6 +207,7 @@ class ConwayCell : public AbstractCell
 		FRIEND_TEST(Life, conway_evolve_3);
 		FRIEND_TEST(Life, conway_evolve_4);
 		FRIEND_TEST(Life, conway_evolve_5);
+		FRIEND_TEST(Life, conway_evolve_6);
 };
 
 class FredkinCell : public AbstractCell
@@ -203,11 +218,8 @@ class FredkinCell : public AbstractCell
 		FredkinCell();
 		void Evolve();
 		friend std::ostream& operator<<( std::ostream& o, const FredkinCell& fc);
-		int GetAge() { return age; }
-		virtual FredkinCell* clone () const 
-		{
-            return new FredkinCell(*this);
-		}
+		int GetAge();
+		virtual FredkinCell* clone () const { return new FredkinCell(*this); }
 		
 	private:
 		FRIEND_TEST(Life, fredkin_constructor_1);
@@ -217,6 +229,9 @@ class FredkinCell : public AbstractCell
 		FRIEND_TEST(Life, fredkin_evolve_4);
 		FRIEND_TEST(Life, fredkin_evolve_5);
 		FRIEND_TEST(Life, fredkin_evolve_6);
+		FRIEND_TEST(Life, fredkin_write_3);
+		FRIEND_TEST(Life, fredkin_write_4);
+		FRIEND_TEST(Life, fredkin_age_1);
 };
 
 template <typename T>
@@ -300,70 +315,44 @@ class Handle
 class Cell : Handle<AbstractCell>
 {
 	public:
-		Cell () : Handle<AbstractCell> ( new FredkinCell() ) {}
-		Cell (AbstractCell* p) : Handle<AbstractCell> (p) {}
+		Cell ();
+		Cell (AbstractCell* p);
+		friend std::ostream& operator<<( std::ostream& o, const Cell& c);
+		void BecomeAlive (CELLTYPE t);
+		void BecomeAlive ();
+		bool IsAlive() const;
+		void IncrementNeighbors();
+		void ResetNeighbors();
+		CELLTYPE GetCellType() const;
+		void Evolve();
 		
-		friend std::ostream& operator<<( std::ostream& o, const Cell& c)
-		{
-			if(c.get()->GetCellType() == FREDKIN)
-			{
-				if(c.get()->IsAlive())
-					o << ((FredkinCell*)(c.get()))->GetAge();
-				else
-					o << '-';
-			}
-			else if(c.get()->GetCellType() == CONWAY)
-			{
-				if(c.get()->IsAlive())
-					o << '*';
-				else
-					o << '.';
-			}
-	
- 			return o;
-		}
-		
-		void BecomeAlive (CELLTYPE t) 
-		{
-			if(t == CONWAY)
-				set(new ConwayCell());
-			else if (t == FREDKIN)
-				set(new FredkinCell());
-			
-			get()->BecomeAlive();
-		}
-		
-		void BecomeAlive () 
-		{
-			get()->BecomeAlive();
-		}
-		bool IsAlive() const
-		{
-			return get()->IsAlive();
-		}
-		void IncrementNeighbors()
-		{
-			get()->IncrementNeighbors();
-		}
-		void ResetNeighbors()
-		{
-			get()->ResetNeighbors();
-		}
-		CELLTYPE GetCellType() const
-		{
-			return get()->GetCellType();
-		}
-		void Evolve()
-		{
-			get()->Evolve();
-			
-			if(get()->GetCellType() == FREDKIN)
-			{
-				if(((FredkinCell*)get())->GetAge() == 2)
-				{
-					set(new ConwayCell());
-					get()->BecomeAlive();
-				}
-			}
-		}
+	private:
+		FRIEND_TEST(Life, cell_constructor_1);
+		FRIEND_TEST(Life, cell_copy_1);
+		FRIEND_TEST(Life, cell_copy_2);
+		FRIEND_TEST(Life, cell_write_1);
+		FRIEND_TEST(Life, cell_write_2);
+		FRIEND_TEST(Life, cell_write_3);
+		FRIEND_TEST(Life, cell_write_4);
+		FRIEND_TEST(Life, cell_alive_1);
+		FRIEND_TEST(Life, cell_alive_2);
+		FRIEND_TEST(Life, cell_alive_3);
+		FRIEND_TEST(Life, cell_is_alive_1);
+		FRIEND_TEST(Life, cell_is_alive_2);
+		FRIEND_TEST(Life, cell_is_alive_3);
+		FRIEND_TEST(Life, cell_inc_neighbors_1);
+		FRIEND_TEST(Life, cell_inc_neighbors_2);
+		FRIEND_TEST(Life, cell_inc_neighbors_3);
+		FRIEND_TEST(Life, cell_res_neighbors_1);
+		FRIEND_TEST(Life, cell_res_neighbors_2);
+		FRIEND_TEST(Life, cell_res_neighbors_3);
+		FRIEND_TEST(Life, cell_type_1);
+		FRIEND_TEST(Life, cell_type_2);
+		FRIEND_TEST(Life, cell_type_3);
+		FRIEND_TEST(Life, cell_evolve_1);
+		FRIEND_TEST(Life, cell_evolve_2);
+		FRIEND_TEST(Life, cell_evolve_3);
+		FRIEND_TEST(Life, cell_evolve_4);
+		FRIEND_TEST(Life, cell_evolve_5);
+		FRIEND_TEST(Life, cell_evolve_6);
 };

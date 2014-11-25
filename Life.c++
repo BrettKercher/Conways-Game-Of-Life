@@ -80,6 +80,11 @@ void ConwayCell::Evolve()
 
 FredkinCell::FredkinCell()  : AbstractCell(FREDKIN), age(0) {}
 
+int FredkinCell::GetAge() 
+{ 
+	return age; 
+}
+
 std::ostream& operator<<( std::ostream& o, const FredkinCell& fc)
 {
 	if(fc.IsAlive())
@@ -111,6 +116,77 @@ void FredkinCell::Evolve()
 		if(neighbors == 1 || neighbors == 3)
 		{
 			alive = true;
+		}
+	}
+}
+
+// ---------
+// Cell Functions
+// ---------
+
+Cell::Cell () : Handle<AbstractCell> ( new FredkinCell() ) {}
+Cell::Cell (AbstractCell* p) : Handle<AbstractCell> (p) {}
+
+std::ostream& operator<<( std::ostream& o, const Cell& c)
+{
+	if(c.get()->GetCellType() == FREDKIN)
+	{
+		if(c.get()->IsAlive())
+			o << ((FredkinCell*)(c.get()))->GetAge();
+		else
+			o << '-';
+	}
+	else if(c.get()->GetCellType() == CONWAY)
+	{
+		if(c.get()->IsAlive())
+			o << '*';
+		else
+			o << '.';
+	}
+
+	return o;
+}
+
+void Cell::BecomeAlive (CELLTYPE t) 
+{
+	if(t == CONWAY)
+		set(new ConwayCell());
+	else if (t == FREDKIN)
+		set(new FredkinCell());
+	
+	get()->BecomeAlive();
+}
+
+void Cell::BecomeAlive () 
+{
+	get()->BecomeAlive();
+}
+bool Cell::IsAlive() const
+{
+	return get()->IsAlive();
+}
+void Cell::IncrementNeighbors()
+{
+	get()->IncrementNeighbors();
+}
+void Cell::ResetNeighbors()
+{
+	get()->ResetNeighbors();
+}
+CELLTYPE Cell::GetCellType() const
+{
+	return get()->GetCellType();
+}
+void Cell::Evolve()
+{
+	get()->Evolve();
+	
+	if(get()->GetCellType() == FREDKIN)
+	{
+		if(((FredkinCell*)get())->GetAge() == 2)
+		{
+			set(new ConwayCell());
+			get()->BecomeAlive();
 		}
 	}
 }

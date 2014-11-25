@@ -1,0 +1,476 @@
+==17676== Memcheck, a memory error detector
+==17676== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
+==17676== Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info
+==17676== Command: TestLife
+==17676== 
+Running main() from gtest_main.cc
+[==========] Running 82 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 82 tests from Life
+[ RUN      ] Life.life_constructor_1
+[       OK ] Life.life_constructor_1 (33 ms)
+[ RUN      ] Life.life_constructor_2
+[       OK ] Life.life_constructor_2 (26 ms)
+[ RUN      ] Life.life_constructor_3
+[       OK ] Life.life_constructor_3 (28 ms)
+[ RUN      ] Life.life_notify_1
+[       OK ] Life.life_notify_1 (28 ms)
+[ RUN      ] Life.life_notify_2
+[       OK ] Life.life_notify_2 (6 ms)
+[ RUN      ] Life.life_notify_3
+[       OK ] Life.life_notify_3 (15 ms)
+[ RUN      ] Life.life_notify_4
+[       OK ] Life.life_notify_4 (6 ms)
+[ RUN      ] Life.life_notify_5
+[       OK ] Life.life_notify_5 (10 ms)
+[ RUN      ] Life.life_notify_6
+[       OK ] Life.life_notify_6 (13 ms)
+[ RUN      ] Life.life_notify_7
+[       OK ] Life.life_notify_7 (14 ms)
+[ RUN      ] Life.life_pop_1
+[       OK ] Life.life_pop_1 (5 ms)
+[ RUN      ] Life.life_pop_2
+[       OK ] Life.life_pop_2 (5 ms)
+[ RUN      ] Life.life_pop_3
+[       OK ] Life.life_pop_3 (7 ms)
+[ RUN      ] Life.life_write_1
+[       OK ] Life.life_write_1 (13 ms)
+[ RUN      ] Life.life_write_2
+[       OK ] Life.life_write_2 (4 ms)
+[ RUN      ] Life.life_write_3
+[       OK ] Life.life_write_3 (7 ms)
+[ RUN      ] Life.life_init_1
+[       OK ] Life.life_init_1 (5 ms)
+[ RUN      ] Life.life_init_2
+[       OK ] Life.life_init_2 (5 ms)
+[ RUN      ] Life.life_init_3
+[       OK ] Life.life_init_3 (8 ms)
+[ RUN      ] Life.life_next_gen_1
+[       OK ] Life.life_next_gen_1 (9 ms)
+[ RUN      ] Life.life_next_gen_2
+[       OK ] Life.life_next_gen_2 (6 ms)
+[ RUN      ] Life.life_next_gen_3
+[       OK ] Life.life_next_gen_3 (12 ms)
+[ RUN      ] Life.conway_constructor_1
+[       OK ] Life.conway_constructor_1 (2 ms)
+[ RUN      ] Life.conway_evolve_1
+[       OK ] Life.conway_evolve_1 (2 ms)
+[ RUN      ] Life.conway_evolve_2
+[       OK ] Life.conway_evolve_2 (2 ms)
+[ RUN      ] Life.conway_evolve_3
+[       OK ] Life.conway_evolve_3 (2 ms)
+[ RUN      ] Life.conway_evolve_4
+[       OK ] Life.conway_evolve_4 (2 ms)
+[ RUN      ] Life.conway_evolve_5
+[       OK ] Life.conway_evolve_5 (2 ms)
+[ RUN      ] Life.conway_evolve_6
+[       OK ] Life.conway_evolve_6 (2 ms)
+[ RUN      ] Life.conway_write_1
+[       OK ] Life.conway_write_1 (3 ms)
+[ RUN      ] Life.conway_write_2
+[       OK ] Life.conway_write_2 (3 ms)
+[ RUN      ] Life.fredkin_constructor_1
+[       OK ] Life.fredkin_constructor_1 (3 ms)
+[ RUN      ] Life.fredkin_evolve_1
+[       OK ] Life.fredkin_evolve_1 (2 ms)
+[ RUN      ] Life.fredkin_evolve_2
+[       OK ] Life.fredkin_evolve_2 (2 ms)
+[ RUN      ] Life.fredkin_evolve_3
+[       OK ] Life.fredkin_evolve_3 (2 ms)
+[ RUN      ] Life.fredkin_evolve_4
+[       OK ] Life.fredkin_evolve_4 (2 ms)
+[ RUN      ] Life.fredkin_evolve_5
+[       OK ] Life.fredkin_evolve_5 (2 ms)
+[ RUN      ] Life.fredkin_evolve_6
+[       OK ] Life.fredkin_evolve_6 (2 ms)
+[ RUN      ] Life.fredkin_write_1
+[       OK ] Life.fredkin_write_1 (2 ms)
+[ RUN      ] Life.fredkin_write_2
+[       OK ] Life.fredkin_write_2 (3 ms)
+[ RUN      ] Life.fredkin_write_3
+[       OK ] Life.fredkin_write_3 (2 ms)
+[ RUN      ] Life.fredkin_write_4
+[       OK ] Life.fredkin_write_4 (2 ms)
+[ RUN      ] Life.fredkin_age_1
+[       OK ] Life.fredkin_age_1 (3 ms)
+[ RUN      ] Life.abstract_alive_1
+[       OK ] Life.abstract_alive_1 (2 ms)
+[ RUN      ] Life.abstract_alive_2
+[       OK ] Life.abstract_alive_2 (3 ms)
+[ RUN      ] Life.abstract_is_alive_1
+[       OK ] Life.abstract_is_alive_1 (2 ms)
+[ RUN      ] Life.abstract_is_alive_2
+[       OK ] Life.abstract_is_alive_2 (3 ms)
+[ RUN      ] Life.abstract_is_alive_3
+[       OK ] Life.abstract_is_alive_3 (2 ms)
+[ RUN      ] Life.abstract_inc_neighbors_1
+[       OK ] Life.abstract_inc_neighbors_1 (2 ms)
+[ RUN      ] Life.abstract_inc_neighbors_2
+[       OK ] Life.abstract_inc_neighbors_2 (2 ms)
+[ RUN      ] Life.abstract_res_neighbors_1
+[       OK ] Life.abstract_res_neighbors_1 (2 ms)
+[ RUN      ] Life.abstract_res_neighbors_2
+[       OK ] Life.abstract_res_neighbors_2 (2 ms)
+[ RUN      ] Life.abstract_type_1
+[       OK ] Life.abstract_type_1 (2 ms)
+[ RUN      ] Life.abstract_type_2
+[       OK ] Life.abstract_type_2 (2 ms)
+[ RUN      ] Life.cell_constructor_1
+[       OK ] Life.cell_constructor_1 (2 ms)
+[ RUN      ] Life.cell_copy_1
+[       OK ] Life.cell_copy_1 (2 ms)
+[ RUN      ] Life.cell_copy_2
+[       OK ] Life.cell_copy_2 (3 ms)
+[ RUN      ] Life.cell_write_1
+[       OK ] Life.cell_write_1 (2 ms)
+[ RUN      ] Life.cell_write_2
+[       OK ] Life.cell_write_2 (3 ms)
+[ RUN      ] Life.cell_write_3
+[       OK ] Life.cell_write_3 (4 ms)
+[ RUN      ] Life.cell_write_4
+[       OK ] Life.cell_write_4 (3 ms)
+[ RUN      ] Life.cell_alive_1
+[       OK ] Life.cell_alive_1 (2 ms)
+[ RUN      ] Life.cell_alive_2
+[       OK ] Life.cell_alive_2 (3 ms)
+[ RUN      ] Life.cell_alive_3
+[       OK ] Life.cell_alive_3 (2 ms)
+[ RUN      ] Life.cell_is_alive_1
+[       OK ] Life.cell_is_alive_1 (3 ms)
+[ RUN      ] Life.cell_is_alive_2
+[       OK ] Life.cell_is_alive_2 (2 ms)
+[ RUN      ] Life.cell_is_alive_3
+[       OK ] Life.cell_is_alive_3 (3 ms)
+[ RUN      ] Life.cell_inc_neighbors_1
+[       OK ] Life.cell_inc_neighbors_1 (3 ms)
+[ RUN      ] Life.cell_inc_neighbors_2
+[       OK ] Life.cell_inc_neighbors_2 (2 ms)
+[ RUN      ] Life.cell_inc_neighbors_3
+[       OK ] Life.cell_inc_neighbors_3 (3 ms)
+[ RUN      ] Life.cell_res_neighbors_1
+[       OK ] Life.cell_res_neighbors_1 (3 ms)
+[ RUN      ] Life.cell_res_neighbors_2
+[       OK ] Life.cell_res_neighbors_2 (2 ms)
+[ RUN      ] Life.cell_res_neighbors_3
+[       OK ] Life.cell_res_neighbors_3 (2 ms)
+[ RUN      ] Life.cell_type_1
+[       OK ] Life.cell_type_1 (2 ms)
+[ RUN      ] Life.cell_type_2
+[       OK ] Life.cell_type_2 (3 ms)
+[ RUN      ] Life.cell_type_3
+[       OK ] Life.cell_type_3 (2 ms)
+[ RUN      ] Life.cell_evolve_1
+[       OK ] Life.cell_evolve_1 (4 ms)
+[ RUN      ] Life.cell_evolve_2
+[       OK ] Life.cell_evolve_2 (3 ms)
+[ RUN      ] Life.cell_evolve_3
+[       OK ] Life.cell_evolve_3 (3 ms)
+[ RUN      ] Life.cell_evolve_4
+[       OK ] Life.cell_evolve_4 (3 ms)
+[ RUN      ] Life.cell_evolve_5
+[       OK ] Life.cell_evolve_5 (3 ms)
+[ RUN      ] Life.cell_evolve_6
+[       OK ] Life.cell_evolve_6 (6 ms)
+[----------] 82 tests from Life (438 ms total)
+
+[----------] Global test environment tear-down
+[==========] 82 tests from 1 test case ran. (464 ms total)
+[  PASSED  ] 82 tests.
+==17676== 
+==17676== HEAP SUMMARY:
+==17676==     in use at exit: 0 bytes in 0 blocks
+==17676==   total heap usage: 3,712 allocs, 3,712 frees, 289,241 bytes allocated
+==17676== 
+==17676== All heap blocks were freed -- no leaks are possible
+==17676== 
+==17676== For counts of detected and suppressed errors, rerun with: -v
+==17676== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
+File 'Life.c++'
+Lines executed:98.82% of 85
+Branches executed:100.00% of 46
+Taken at least once:89.13% of 46
+Calls executed:100.00% of 57
+Creating 'Life.c++.gcov'
+
+File '/usr/include/c++/4.7/iostream'
+Lines executed:100.00% of 1
+No branches
+Calls executed:100.00% of 2
+Creating 'iostream.gcov'
+
+File 'Life.h'
+Lines executed:94.12% of 17
+Branches executed:100.00% of 8
+Taken at least once:50.00% of 8
+Calls executed:61.11% of 18
+Creating 'Life.h.gcov'
+
+File '/usr/include/c++/4.7/ostream'
+No executable lines
+No branches
+No calls
+Removing 'ostream.gcov'
+
+File 'TestLife.c++'
+Lines executed:100.00% of 523
+Branches executed:56.19% of 4300
+Taken at least once:29.12% of 4300
+Calls executed:50.52% of 3452
+Creating 'TestLife.c++.gcov'
+
+File '/usr/include/gtest/internal/gtest-port.h'
+Lines executed:23.53% of 17
+Branches executed:7.14% of 28
+Taken at least once:3.57% of 28
+Calls executed:3.85% of 26
+Creating 'gtest-port.h.gcov'
+
+File '/usr/include/gtest/internal/gtest-param-util.h'
+Lines executed:0.00% of 29
+Branches executed:0.00% of 34
+Taken at least once:0.00% of 34
+Calls executed:0.00% of 60
+Creating 'gtest-param-util.h.gcov'
+
+File '/usr/include/c++/4.7/bits/stl_bvector.h'
+Lines executed:0.00% of 32
+Branches executed:0.00% of 10
+Taken at least once:0.00% of 10
+Calls executed:0.00% of 14
+Creating 'stl_bvector.h.gcov'
+
+File '/usr/include/gtest/internal/gtest-internal.h'
+Lines executed:66.67% of 6
+Branches executed:100.00% of 330
+Taken at least once:50.00% of 330
+Calls executed:66.31% of 742
+Creating 'gtest-internal.h.gcov'
+
+File 'Life.h'
+Lines executed:89.86% of 69
+Branches executed:95.00% of 160
+Taken at least once:78.75% of 160
+Calls executed:80.88% of 204
+Creating 'Life.h.gcov'
+
+File '/usr/include/c++/4.7/iostream'
+Lines executed:100.00% of 1
+No branches
+Calls executed:100.00% of 2
+Creating 'iostream.gcov'
+
+File '/usr/include/c++/4.7/ostream'
+No executable lines
+No branches
+No calls
+Removing 'ostream.gcov'
+
+File '/usr/include/c++/4.7/bits/stl_iterator.h'
+Lines executed:100.00% of 10
+No branches
+Calls executed:100.00% of 6
+Creating 'stl_iterator.h.gcov'
+
+File '/usr/include/gtest/gtest-printers.h'
+Lines executed:0.00% of 35
+Branches executed:0.00% of 38
+Taken at least once:0.00% of 38
+Calls executed:0.00% of 54
+Creating 'gtest-printers.h.gcov'
+
+File '/usr/include/c++/4.7/bits/stl_construct.h'
+Lines executed:100.00% of 14
+Branches executed:100.00% of 44
+Taken at least once:63.64% of 44
+Calls executed:79.41% of 68
+Creating 'stl_construct.h.gcov'
+
+File '/usr/include/c++/4.7/bits/move.h'
+Lines executed:100.00% of 4
+No branches
+No calls
+Creating 'move.h.gcov'
+
+File '/usr/include/c++/4.7/bits/stl_uninitialized.h'
+Lines executed:76.32% of 38
+Branches executed:67.86% of 56
+Taken at least once:50.00% of 56
+Calls executed:50.00% of 90
+Creating 'stl_uninitialized.h.gcov'
+
+File '/usr/include/c++/4.7/ext/new_allocator.h'
+Lines executed:90.91% of 11
+Branches executed:100.00% of 12
+Taken at least once:50.00% of 12
+Calls executed:72.00% of 25
+Creating 'new_allocator.h.gcov'
+
+File '/usr/include/c++/4.7/bits/alloc_traits.h'
+Lines executed:100.00% of 4
+No branches
+Calls executed:100.00% of 6
+Creating 'alloc_traits.h.gcov'
+
+File '/usr/include/c++/4.7/bits/stl_vector.h'
+Lines executed:100.00% of 62
+Branches executed:100.00% of 78
+Taken at least once:50.00% of 78
+Calls executed:71.88% of 192
+Creating 'stl_vector.h.gcov'
+
+File '/usr/include/c++/4.7/bits/allocator.h'
+Lines executed:66.67% of 6
+No branches
+Calls executed:94.74% of 19
+Creating 'allocator.h.gcov'
+
+File '/usr/include/c++/4.7/ext/alloc_traits.h'
+Lines executed:100.00% of 2
+No branches
+Calls executed:100.00% of 3
+Creating 'alloc_traits.h.gcov'
+
+File '/usr/include/c++/4.7/bits/basic_string.h'
+Lines executed:28.57% of 7
+Branches executed:0.00% of 4
+Taken at least once:0.00% of 4
+Calls executed:16.67% of 6
+Creating 'basic_string.h.gcov'
+
+File '/usr/include/c++/4.7/bits/stl_iterator_base_funcs.h'
+Lines executed:0.00% of 4
+No branches
+Calls executed:0.00% of 2
+Creating 'stl_iterator_base_funcs.h.gcov'
+
+File '/usr/include/c++/4.7/bits/stl_iterator_base_types.h'
+Lines executed:0.00% of 3
+No branches
+No calls
+Creating 'stl_iterator_base_types.h.gcov'
+
+File '/usr/include/c++/4.7/ext/type_traits.h'
+Lines executed:0.00% of 2
+No branches
+No calls
+Creating 'type_traits.h.gcov'
+
+File '/usr/include/c++/4.7/sstream'
+Lines executed:0.00% of 1
+Branches executed:0.00% of 2
+Taken at least once:0.00% of 2
+Calls executed:0.00% of 5
+Creating 'sstream.gcov'
+
+File '/usr/include/c++/4.7/bits/basic_string.tcc'
+Lines executed:0.00% of 16
+Branches executed:0.00% of 16
+Taken at least once:0.00% of 16
+Calls executed:0.00% of 20
+Creating 'basic_string.tcc.gcov'
+
+File '/usr/include/c++/4.7/bits/basic_ios.h'
+Lines executed:0.00% of 4
+Branches executed:0.00% of 2
+Taken at least once:0.00% of 2
+Calls executed:0.00% of 1
+Creating 'basic_ios.h.gcov'
+
+File '/usr/include/gtest/gtest.h'
+Lines executed:47.83% of 23
+Branches executed:22.22% of 54
+Taken at least once:11.11% of 54
+Calls executed:16.19% of 105
+Creating 'gtest.h.gcov'
+
+File '/usr/include/c++/4.7/streambuf'
+No executable lines
+No branches
+No calls
+Removing 'streambuf.gcov'
+
+File '/usr/include/c++/4.7/istream'
+No executable lines
+No branches
+No calls
+Removing 'istream.gcov'
+
+File '/usr/include/c++/4.7/iomanip'
+Lines executed:0.00% of 2
+No branches
+No calls
+Creating 'iomanip.gcov'
+
+File '/usr/include/gtest/gtest-message.h'
+Lines executed:0.00% of 4
+Branches executed:0.00% of 4
+Taken at least once:0.00% of 4
+Calls executed:0.00% of 12
+Creating 'gtest-message.h.gcov'
+
+File '/usr/include/gtest/gtest-test-part.h'
+Lines executed:0.00% of 1
+Branches executed:0.00% of 2
+Taken at least once:0.00% of 2
+Calls executed:0.00% of 3
+Creating 'gtest-test-part.h.gcov'
+
+File '/usr/include/gtest/internal/gtest-death-test-internal.h'
+Lines executed:0.00% of 2
+Branches executed:0.00% of 4
+Taken at least once:0.00% of 4
+Calls executed:0.00% of 6
+Creating 'gtest-death-test-internal.h.gcov'
+
+File '/usr/include/gtest/internal/gtest-string.h'
+Lines executed:9.09% of 11
+Branches executed:100.00% of 2
+Taken at least once:100.00% of 2
+Calls executed:20.00% of 5
+Creating 'gtest-string.h.gcov'
+
+File '/usr/include/c++/4.7/typeinfo'
+Lines executed:0.00% of 3
+Branches executed:0.00% of 6
+Taken at least once:0.00% of 6
+No calls
+Creating 'typeinfo.gcov'
+
+File '/usr/include/c++/4.7/bits/locale_facets.h'
+Lines executed:0.00% of 5
+Branches executed:0.00% of 2
+Taken at least once:0.00% of 2
+Calls executed:0.00% of 2
+Creating 'locale_facets.h.gcov'
+
+File '/usr/include/c++/4.7/bits/ios_base.h'
+Lines executed:0.00% of 8
+No branches
+No calls
+Creating 'ios_base.h.gcov'
+
+File '/usr/include/c++/4.7/new'
+Lines executed:66.67% of 3
+No branches
+No calls
+Creating 'new.gcov'
+
+File '/usr/include/c++/4.7/ext/atomicity.h'
+Lines executed:0.00% of 10
+Branches executed:0.00% of 2
+Taken at least once:0.00% of 2
+Calls executed:0.00% of 3
+Creating 'atomicity.h.gcov'
+
+File '/usr/include/x86_64-linux-gnu/c++/4.7/bits/gthr-default.h'
+Lines executed:0.00% of 2
+No branches
+No calls
+Creating 'gthr-default.h.gcov'
+
+File '/usr/include/c++/4.7/bits/char_traits.h'
+Lines executed:0.00% of 6
+No branches
+No calls
+Creating 'char_traits.h.gcov'
+
