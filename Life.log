@@ -1,0 +1,119 @@
+commit cd8684587cb8b9404286663f24429865aba39e3f
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Tue Nov 25 15:27:13 2014 -0600
+
+    Added UML diagram. Closes #8
+
+commit deedaac59ca742cebf452e44eab28e25a7f9cf20
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Tue Nov 25 14:59:16 2014 -0600
+
+    Added RunLife.in and .out
+
+commit 3f98352fc943dd19be924a69e73f7aa10456fa02
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Tue Nov 25 14:57:53 2014 -0600
+
+    Added doxygen documentation. closes #9
+
+commit 0d5387aad68b9ef3136746855d09feb3a15bf214
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Tue Nov 25 14:55:32 2014 -0600
+
+    Added a bunch of unit tests for cell. closes #25 closes #5
+
+commit 415378ca3d822bd4cfd3893ae40d2bd86c017c59
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Tue Nov 25 13:28:15 2014 -0600
+
+    Created the Cell Handler. closes #26
+
+commit 5256594b6806359d0b8849d2b9ba23f9abf9c8aa
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Mon Nov 24 15:56:31 2014 -0600
+
+    Implemented Print methods and finished RunLife.c++. closes #24
+
+commit 0a02ed5f0df94f9ddd3a00aa2ec1e718fb327521
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Mon Nov 24 15:09:53 2014 -0600
+
+    Read in grids from RunLife.c++. closes #23
+
+commit fb049cee38e07a09569b7b69f71b45007025ea38
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Mon Nov 24 14:41:50 2014 -0600
+
+    Wrote unit tests for abstract cell. closes #22
+
+commit 14bd31c2aac5ec43fc6c6ae327d8f086761d85c9
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Mon Nov 24 14:19:47 2014 -0600
+
+    Implemented unit tests for conway and fredkin. closes #21
+
+commit 6804df8e67c30feb7afb3a0438d22168877ccaab
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Mon Nov 24 13:42:17 2014 -0600
+
+    Added Unit Tests For Life Functions. closes #20
+
+commit 1ebf1490c21aad4ca26c3833211931ecd488fe4f
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Thu Nov 20 15:46:31 2014 -0600
+
+    Implemented AbstractCell Functions. Closes #18
+
+commit f81a1ab6d0287ede18261bc389a7123ea4239284
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Thu Nov 20 15:42:51 2014 -0600
+
+    Added Function Headers to Life.c++. closes #17
+
+commit 3a39d6acda830ea08c7e9b43b97d6d855c8e761d
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Thu Nov 20 15:31:23 2014 -0600
+
+    Implemented Life Functions. closes #16
+
+commit 420a051fdd13617d2bea50026e5d0a8ec5579385
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Thu Nov 20 15:11:07 2014 -0600
+
+    Added definition and interface for Fredkin. closes #15
+
+commit 9f3933197f2205d66e65c33376ec06c47ccaf635
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Thu Nov 20 15:10:12 2014 -0600
+
+    Added definition and interface for ConwayCell. closes #14
+
+commit 14edcd9bfb0901efa6b66d36ea1ddd1162150fc1
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Thu Nov 20 15:06:21 2014 -0600
+
+    Added definition and interface for AbstractCell. closes #13
+
+commit 6b2ca2d7ba8406b3b8f220516b47e5e4e09558f2
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Thu Nov 20 14:54:42 2014 -0600
+
+    Definied Life Class and Added Interface. Closes #12
+
+commit cc41d2de0174d735aff5a578d52beac5730174b6
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Thu Nov 20 14:20:14 2014 -0600
+
+    Added more Initial Files
+
+commit 46ebfaabf66e8f039be3453b4f5bddd32506a63d
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Thu Nov 20 14:12:56 2014 -0600
+
+    Added Initial Files
+
+commit 8a533e74d67e4c632733334c9503950ef49c18e5
+Author: Brett Kercher <brettkercher@utexas.edu>
+Date:   Thu Nov 20 14:10:42 2014 -0600
+
+    First Commit
