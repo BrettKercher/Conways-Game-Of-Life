@@ -1,5 +1,6 @@
 #include <vector>
 #include <utility>
+#include <algorithm> // swap
 #include "gtest/gtest_prod.h"
 
 enum CELLTYPE { CONWAY, FREDKIN } ;
@@ -7,7 +8,7 @@ enum CELLTYPE { CONWAY, FREDKIN } ;
 template <typename T> 
 class Life
 {
-	private:
+	public:
 		std::vector< std::vector<T> > grid; //n = y, m = x
 		int n;
 		int m;
@@ -15,34 +16,27 @@ class Life
 		
 		void NotifyNeighbors(int y, int x, bool Conway)
 		{
-			if(Conway)
-			{
-				for(int i = y-1; i <= y+1; i++)
-				{
-					for(int j = x-1; j <= x+1; j++)
-					{
-						if(i >= 0 && i < n && j >= 0 && j < m)
-						{
-							if(i == y && j == x) 
-							{}
-							else
-								grid[i][j].IncrementNeighbors();
-						}
-					}
-				}
-			}
-			else if(!Conway)
-			{
-				if( (y+1) < n)
-					grid[y+1][x].IncrementNeighbors();
-				if( (y-1) >= 0)
-					grid[y-1][x].IncrementNeighbors();
-				
-				if( (x+1) < m)
-					grid[y][x+1].IncrementNeighbors();
-				if( (x-1) >= 0)
-					grid[y][x-1].IncrementNeighbors();
-			}
+			if((y-1) >= 0 && (x-1) >= 0 && grid[y-1][x-1].GetCellType() == CONWAY)
+				grid[y-1][x-1].IncrementNeighbors();
+			
+			if((y-1) >= 0 && (x+1) < m && grid[y-1][x+1].GetCellType() == CONWAY)
+				grid[y-1][x+1].IncrementNeighbors();
+			
+			if((y+1) < n && (x-1) >= 0 && grid[y+1][x-1].GetCellType() == CONWAY)
+				grid[y+1][x-1].IncrementNeighbors();
+			
+			if((y+1) < n && (x+1) < m && grid[y+1][x+1].GetCellType() == CONWAY)
+				grid[y+1][x+1].IncrementNeighbors();
+			
+			if( y+1 < n)
+				grid[y+1][x].IncrementNeighbors();
+			if( y-1 >= 0)
+				grid[y-1][x].IncrementNeighbors();
+			if( x+1 < m)
+				grid[y][x+1].IncrementNeighbors();
+			if(x-1 >= 0)
+				grid[y][x-1].IncrementNeighbors();
+
 		}
 		
 		int GetPopulation() const
@@ -66,7 +60,7 @@ class Life
 		
 		friend std::ostream& operator<<( std::ostream& o, const Life& l) 
 		{
-			o << std::endl << "Generation: " << l.generation << ", Population: " << l.GetPopulation() << "." << std::endl;
+			o << std::endl << "Generation = " << l.generation << ", Population = " << l.GetPopulation() << "." << std::endl;
 			
 			for(int i = 0; i < l.n; i++)
 			{
@@ -83,6 +77,11 @@ class Life
 		void InitializeGrid(int n, int m) 
 		{
 			grid[n][m].BecomeAlive();
+		}
+		
+		void InitializeGrid(int n, int m, CELLTYPE t) 
+		{
+			grid[n][m].BecomeAlive(t);
 		}
 		
 		void NextGeneration() 
@@ -146,12 +145,14 @@ class AbstractCell
 	public:
 		AbstractCell();
 		AbstractCell(CELLTYPE t);
+		virtual ~AbstractCell () {}
 		virtual void Evolve() = 0;
 		void BecomeAlive();
 		bool IsAlive() const;
 		void IncrementNeighbors();
 		void ResetNeighbors();
-		CELLTYPE GetCellType();
+		CELLTYPE GetCellType() const;
+		virtual AbstractCell* clone () const = 0;
 		
 	private:
 		FRIEND_TEST(Life, life_notify_1);
@@ -181,6 +182,10 @@ class ConwayCell : public AbstractCell
 		ConwayCell();
 		void Evolve();
 		friend std::ostream& operator<<( std::ostream& o, const ConwayCell& cc);
+		virtual ConwayCell* clone () const 
+		{
+            return new ConwayCell(*this);
+		}
 	private:
 		FRIEND_TEST(Life, conway_constructor_1);
 		FRIEND_TEST(Life, conway_evolve_1);
@@ -198,6 +203,11 @@ class FredkinCell : public AbstractCell
 		FredkinCell();
 		void Evolve();
 		friend std::ostream& operator<<( std::ostream& o, const FredkinCell& fc);
+		int GetAge() { return age; }
+		virtual FredkinCell* clone () const 
+		{
+            return new FredkinCell(*this);
+		}
 		
 	private:
 		FRIEND_TEST(Life, fredkin_constructor_1);
@@ -207,4 +217,153 @@ class FredkinCell : public AbstractCell
 		FRIEND_TEST(Life, fredkin_evolve_4);
 		FRIEND_TEST(Life, fredkin_evolve_5);
 		FRIEND_TEST(Life, fredkin_evolve_6);
+};
+
+template <typename T>
+class Handle 
+{
+    friend bool operator == (const Handle& lhs, const Handle& rhs) 
+	{
+        if (!lhs._p && !rhs._p)
+            return true;
+        if (!lhs._p || !rhs._p)
+            return false;
+        return (*lhs._p == *rhs._p);
+		
+	}
+
+    friend bool operator != (const Handle& lhs, const Handle& rhs) 
+	{
+        return !(lhs == rhs);
+	}
+
+    public:
+        typedef T                 value_type;
+		
+        typedef value_type*       pointer;
+        typedef const value_type* const_pointer;
+
+        typedef value_type&       reference;
+        typedef const value_type& const_reference;
+
+    private:
+        pointer _p;
+
+    protected:
+        pointer get () 
+		{
+            return _p;
+		}
+
+        const_pointer get () const 
+        {
+            return _p;
+		}
+		
+		void set(pointer p)
+		{
+			delete _p;
+			_p = p;
+		}
+
+    public:
+        Handle (pointer p) 
+		{
+            _p = p;
+		}
+
+        Handle (const Handle& that) 
+		{
+            if (!that._p)
+                _p = 0;
+            else
+                _p = that._p->clone();
+		}
+
+        ~Handle () 
+		{
+            delete _p;
+		}
+
+        Handle& operator = (Handle that) 
+		{
+            swap(that);
+            return *this;
+		}
+
+        void swap (Handle& that) 
+		{
+            std::swap(_p, that._p);
+		}
+};
+
+class Cell : Handle<AbstractCell>
+{
+	public:
+		Cell () : Handle<AbstractCell> ( new FredkinCell() ) {}
+		Cell (AbstractCell* p) : Handle<AbstractCell> (p) {}
+		
+		friend std::ostream& operator<<( std::ostream& o, const Cell& c)
+		{
+			if(c.get()->GetCellType() == FREDKIN)
+			{
+				if(c.get()->IsAlive())
+					o << ((FredkinCell*)(c.get()))->GetAge();
+				else
+					o << '-';
+			}
+			else if(c.get()->GetCellType() == CONWAY)
+			{
+				if(c.get()->IsAlive())
+					o << '*';
+				else
+					o << '.';
+			}
+	
+ 			return o;
+		}
+		
+		void BecomeAlive (CELLTYPE t) 
+		{
+			if(t == CONWAY)
+				set(new ConwayCell());
+			else if (t == FREDKIN)
+				set(new FredkinCell());
+			
+			get()->BecomeAlive();
+		}
+		
+		void BecomeAlive () 
+		{
+			get()->BecomeAlive();
+		}
+		bool IsAlive() const
+		{
+			return get()->IsAlive();
+		}
+		void IncrementNeighbors()
+		{
+			get()->IncrementNeighbors();
+		}
+		void ResetNeighbors()
+		{
+			get()->ResetNeighbors();
+		}
+		CELLTYPE GetCellType() const
+		{
+			return get()->GetCellType();
+		}
+		void Evolve()
+		{
+			get()->Evolve();
+			
+			if(get()->GetCellType() == FREDKIN)
+			{
+				if(((FredkinCell*)get())->GetAge() == 2)
+				{
+					set(new ConwayCell());
+					get()->BecomeAlive();
+				}
+			}
+		}
 };

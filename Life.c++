@@ -24,7 +24,7 @@ bool AbstractCell::IsAlive() const
 	return alive;
 }
 
-CELLTYPE AbstractCell::GetCellType()
+CELLTYPE AbstractCell::GetCellType() const
 {
 	return type;
 }

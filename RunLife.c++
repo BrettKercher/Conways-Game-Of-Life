@@ -59,6 +59,8 @@ int main () {
 		cout << l1;
 	}
 	
+	cout << endl;
+	
 
     // -----------------
     // Conway Cell 20x29
@@ -200,6 +202,8 @@ int main () {
 		l4.NextGeneration();
 		cout << l4;
 	}
+	
+	cout << endl;
 
     // ----------
     // Cell 20x20
@@ -211,18 +215,35 @@ int main () {
     Print every grid (i.e. 0, 1, 2, ... 5)
     */
 	
-	/*
-	for(int i = 0; i < n; i++)
+	cin >> type;
+	cin >> n >> m;
+	
+	Life<Cell> l5 (n, m);
+	
+ 	for(int i = 0; i < n; i++)
+ 	{
+ 		cin >> row;
+ 		for(unsigned j = 0; j < row.size(); j++)
+ 		{
+ 			if(row[j] == '0')
+ 			{
+ 				l5.InitializeGrid(i, j, FREDKIN);
+ 			}
+ 			else if(row[j] == '*')
+			{
+				l5.InitializeGrid(i, j, CONWAY);
+			}
+ 		}
+ 	}
+ 	
+ 	//Print Initial Grid
+	cout << l5;
+	
+	//Simulate 5 Generations
+	for(int i = 1; i <= 5; i++)
 	{
-		for(unsigned j = 0; j < m; j++)
-		{
-			if(l4.grid[i][j].IsAlive())
-				cout << "0";
-			else
-				cout << "-";
-		}
-		cout << endl;
+		l5.NextGeneration();
+		cout << l5;
 	}
-	*/
 
     return 0;}
