@@ -1,0 +1,8 @@
+This is an implementation of the Game of Life - https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+
+It utilizes OOP concepts to allow two different types of Cells - a Conway Cell and a Fredkin Cell - both which inherit from a common base Cell Class
+
+RunLife.c++ is the Run Harness - it creates several different simulations and prints out their results
+TestLife.c++ is the Test Harness - it uses gtest to unit test each function
+
+Doxygen is used to provide documentation for the project, which is found in the HTML directory
